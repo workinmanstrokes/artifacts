@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#180626"/>
+  <circle cx="256" cy="256" r="228" fill="none" stroke="#8F7220" stroke-width="4" opacity="0.5"/>
+  <radialGradient id="glow" cx="50%" cy="18%" r="55%">
+    <stop offset="0%" stop-color="#F5D576" stop-opacity="0.22"/>
+    <stop offset="100%" stop-color="#F5D576" stop-opacity="0"/>
+  </radialGradient>
+  <circle cx="256" cy="140" r="180" fill="url(#glow)"/>
+
+  <!-- pediment -->
+  <polygon points="256,58 336,104 176,104" fill="#D4AF37"/>
+  <polygon points="256,74 314,104 198,104" fill="#180626"/>
+
+  <!-- entablature -->
+  <rect x="150" y="104" width="212" height="26" fill="#D4AF37"/>
+  <rect x="150" y="104" width="212" height="7" fill="#F5D576"/>
+
+  <!-- capital -->
+  <polygon points="182,130 330,130 314,168 198,168" fill="#D4AF37"/>
+
+  <!-- fluted shaft -->
+  <rect x="200" y="168" width="112" height="214" fill="#D4AF37"/>
+  <g fill="#180626" opacity="0.55">
+    <rect x="216" y="168" width="6" height="214"/>
+    <rect x="238" y="168" width="6" height="214"/>
+    <rect x="260" y="168" width="6" height="214"/>
+    <rect x="282" y="168" width="6" height="214"/>
+    <rect x="304" y="168" width="6" height="214"/>
+  </g>
+
+  <!-- base -->
+  <rect x="180" y="382" width="152" height="24" fill="#D4AF37"/>
+  <rect x="158" y="406" width="196" height="26" fill="#D4AF37"/>
+  <rect x="158" y="406" width="196" height="7" fill="#F5D576"/>
+</svg>

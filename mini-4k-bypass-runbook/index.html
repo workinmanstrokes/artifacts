@@ -1,0 +1,483 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mini 4K Bypass Runbook</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #11151c;
+    --surface: #1a2029;
+    --surface-2: #212a35;
+    --line: #2b3542;
+    --ink: #e9e4d9;
+    --ink-dim: #8b93a1;
+    --amber: #e2a33d;
+    --amber-dim: #9c7333;
+    --teal: #5fb0ac;
+    --rust: #d9724a;
+    --radius: 6px;
+    color-scheme: dark;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: #f3efe4;
+      --surface: #fffdf8;
+      --surface-2: #eee6d4;
+      --line: #ddd2b8;
+      --ink: #201c14;
+      --ink-dim: #6b6152;
+      --amber: #a3641b;
+      --amber-dim: #c98d3f;
+      --teal: #2c7873;
+      --rust: #ad4b2a;
+      color-scheme: light;
+    }
+  }
+
+  :root[data-theme="light"] {
+    --bg: #f3efe4;
+    --surface: #fffdf8;
+    --surface-2: #eee6d4;
+    --line: #ddd2b8;
+    --ink: #201c14;
+    --ink-dim: #6b6152;
+    --amber: #a3641b;
+    --amber-dim: #c98d3f;
+    --teal: #2c7873;
+    --rust: #ad4b2a;
+    color-scheme: light;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    line-height: 1.55;
+    padding-inline: 20px;
+    padding-block: max(28px, env(safe-area-inset-top, 0px)) 64px;
+  }
+
+  .page {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .eyebrow {
+    font-family: "IBM Plex Sans Condensed", sans-serif;
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+
+  h1 {
+    font-size: clamp(1.7rem, 5vw, 2.3rem);
+    font-weight: 700;
+    margin: 0.35em 0 0.2em;
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+
+  .subtitle {
+    color: var(--ink-dim);
+    font-size: 0.98rem;
+    max-width: 60ch;
+    margin: 0 0 22px;
+  }
+
+  .status {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--teal);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    margin-bottom: 36px;
+  }
+
+  .status-dot {
+    flex: none;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--teal);
+    margin-top: 7px;
+  }
+
+  .status p { margin: 0 0 6px; font-size: 0.92rem; }
+  .status p:last-child { margin-bottom: 0; }
+  .status strong { color: var(--ink); }
+  .status .dim { color: var(--ink-dim); }
+
+  section.phase {
+    margin-top: 40px;
+    padding-top: 6px;
+    border-top: 1px solid var(--line);
+  }
+
+  .phase-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin: 18px 0 8px;
+    border-left: 3px solid var(--amber);
+    padding-left: 12px;
+  }
+
+  .phase-num {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.85rem;
+    color: var(--amber);
+    font-weight: 600;
+    flex: none;
+  }
+
+  .phase-head h2 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: -0.005em;
+  }
+
+  .phase-body { padding-left: 15px; }
+
+  p { margin: 0.7em 0; }
+  .phase-body p { max-width: 62ch; }
+
+  a { color: var(--teal); }
+
+  ul, ol { padding-left: 1.3em; }
+  li { margin: 0.35em 0; }
+
+  code.inline {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.88em;
+    background: var(--surface-2);
+    padding: 0.1em 0.4em;
+    border-radius: 4px;
+  }
+
+  .code-block {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin: 12px 0;
+    overflow: hidden;
+  }
+
+  .code-block .label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px 12px;
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--line);
+    font-family: "IBM Plex Sans Condensed", sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+
+  .copy-btn {
+    font-family: "IBM Plex Sans Condensed", sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--ink-dim);
+    border-radius: 4px;
+    padding: 3px 8px;
+    cursor: pointer;
+  }
+  .copy-btn:hover { color: var(--ink); border-color: var(--ink-dim); }
+  .copy-btn:focus-visible { outline: 2px solid var(--teal); outline-offset: 1px; }
+
+  pre {
+    margin: 0;
+    padding: 12px 14px;
+    overflow-x: auto;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.83rem;
+    line-height: 1.6;
+    white-space: pre;
+  }
+  pre .c1 { color: var(--ink-dim); }
+
+  .callout {
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--rust);
+    border-radius: var(--radius);
+    padding: 12px 14px;
+    margin: 14px 0;
+    background: var(--surface);
+    font-size: 0.9rem;
+  }
+  .callout .tag {
+    font-family: "IBM Plex Sans Condensed", sans-serif;
+    font-weight: 600;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--rust);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .fork {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin: 14px 0;
+  }
+  @media (min-width: 560px) {
+    .fork { grid-template-columns: 1fr 1fr; }
+  }
+  .fork-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 12px 14px;
+    background: var(--surface);
+  }
+  .fork-card .tag {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.72rem;
+    color: var(--amber);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .fork-card p { font-size: 0.87rem; margin: 0; color: var(--ink-dim); }
+  .fork-card p strong { color: var(--ink); }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    margin: 12px 0;
+  }
+  table caption { text-align: left; caption-side: top; }
+  .table-wrap { overflow-x: auto; }
+  th, td {
+    text-align: left;
+    padding: 7px 10px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  th { color: var(--ink-dim); font-weight: 600; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; }
+  td code.inline { white-space: nowrap; }
+
+  footer {
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    color: var(--ink-dim);
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <p class="eyebrow">JobsiteFollow &middot; DJI Mini 4K unlock</p>
+  <h1>Mini 4K Bypass Runbook</h1>
+  <p class="subtitle">The exact commands to decompile the DJI Fly APK and hunt for the drone-registry gate that's keeping the Mini 4K off the SDK's flight-control path.</p>
+
+  <div class="status">
+    <div class="status-dot" aria-hidden="true"></div>
+    <div>
+      <p><strong>Where things stand:</strong> the DJI Fly APK (~706&nbsp;MB, pulled off the Fire tablet via ADB) is sitting on your phone. <span class="dim">Chat upload has a hard size ceiling well under that — don't fight it again.</span></p>
+      <p><strong>Next move:</strong> get the file onto the PC (Drive, email-to-self, or USB when you're at the desk), then run Phase&nbsp;05 below through Claude Code. Everything before that is reference, in case you want to run any step by hand.</p>
+    </div>
+  </div>
+
+  <section class="phase">
+    <div class="phase-head">
+      <span class="phase-num">01</span>
+      <h2>Land the APK on the PC</h2>
+    </div>
+    <div class="phase-body">
+      <p>Any of these work — pick whichever's already open on your phone:</p>
+      <ul>
+        <li>Upload to Google Drive / OneDrive from your phone, then download on the PC</li>
+        <li>Email it to yourself as an attachment (some providers cap attachments around 25&nbsp;MB — if it bounces, use Drive instead)</li>
+        <li>Plug the phone into the PC over USB next time you're at the desk and copy it straight across</li>
+      </ul>
+      <p>Drop it somewhere easy to type, e.g. <code class="inline">C:\Users\18108\drone\dji_fly.apk</code>.</p>
+    </div>
+  </section>
+
+  <section class="phase">
+    <div class="phase-head">
+      <span class="phase-num">02</span>
+      <h2>Toolchain (reference — Claude Code can do this for you)</h2>
+    </div>
+    <div class="phase-body">
+      <p>Two decompilers, used together: <strong>jadx</strong> turns the app's code back into readable-ish Java, <strong>apktool</strong> unpacks it into smali + raw resources (catches anything jadx chokes on). Both need Java.</p>
+
+      <div class="code-block">
+        <div class="label"><span>PowerShell &mdash; Java + ripgrep</span><button class="copy-btn" data-copy="winget install EclipseAdoptium.Temurin.25.JDK&#10;winget install BurntSushi.ripgrep.MSVC">Copy</button></div>
+        <pre>winget install EclipseAdoptium.Temurin.25.JDK
+winget install BurntSushi.ripgrep.MSVC</pre>
+      </div>
+
+      <div class="code-block">
+        <div class="label"><span>PowerShell &mdash; jadx</span><button class="copy-btn" data-copy="mkdir C:\tools\jadx&#10;curl -L -o C:\tools\jadx\jadx.zip https://github.com/skylot/jadx/releases/download/v1.5.6/jadx-1.5.6.zip&#10;tar -xf C:\tools\jadx\jadx.zip -C C:\tools\jadx">Copy</button></div>
+        <pre>mkdir C:\tools\jadx
+curl -L -o C:\tools\jadx\jadx.zip https://github.com/skylot/jadx/releases/download/v1.5.6/jadx-1.5.6.zip
+tar -xf C:\tools\jadx\jadx.zip -C C:\tools\jadx</pre>
+      </div>
+
+      <div class="code-block">
+        <div class="label"><span>PowerShell &mdash; apktool</span><button class="copy-btn" data-copy="mkdir C:\tools\apktool&#10;curl -L -o C:\tools\apktool\apktool.bat https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/windows/apktool.bat">Copy</button></div>
+        <pre>mkdir C:\tools\apktool
+curl -L -o C:\tools\apktool\apktool.bat https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/windows/apktool.bat
+<span class="c1"># then grab the current apktool-*.jar from https://bitbucket.org/iBotPeaches/apktool/downloads
+# and save it into C:\tools\apktool as exactly "apktool.jar"</span></pre>
+      </div>
+
+      <p>Add <code class="inline">C:\tools\jadx\bin</code> and <code class="inline">C:\tools\apktool</code> to your user PATH — same Environment Variables screen you already used for Claude Code, just two more entries in that same list.</p>
+
+      <div class="callout">
+        <span class="tag">Skip this by hand</span>
+        The version numbers above (jadx 1.5.6, whatever apktool build is current) will drift. Claude Code can check for the current release and fetch it itself — Phase&nbsp;05's prompt tells it to install anything missing, so you don't have to keep this page's links fresh.
+      </div>
+    </div>
+  </section>
+
+  <section class="phase">
+    <div class="phase-head">
+      <span class="phase-num">03</span>
+      <h2>Decompile</h2>
+    </div>
+    <div class="phase-body">
+      <p>Run both — jadx for readable code, apktool for the raw smali and resources jadx sometimes garbles:</p>
+      <div class="code-block">
+        <div class="label"><span>PowerShell</span><button class="copy-btn" data-copy="jadx -d C:\Users\18108\drone\jadx_out C:\Users\18108\drone\dji_fly.apk&#10;apktool d C:\Users\18108\drone\dji_fly.apk -o C:\Users\18108\drone\apktool_out">Copy</button></div>
+        <pre>jadx -d C:\Users\18108\drone\jadx_out C:\Users\18108\drone\dji_fly.apk
+apktool d C:\Users\18108\drone\dji_fly.apk -o C:\Users\18108\drone\apktool_out</pre>
+      </div>
+      <p>jadx alone can take several minutes on a 700&nbsp;MB app &mdash; that's normal, let it run.</p>
+    </div>
+  </section>
+
+  <section class="phase">
+    <div class="phase-head">
+      <span class="phase-num">04</span>
+      <h2>Hunt the registry</h2>
+    </div>
+    <div class="phase-body">
+      <p>What we're looking for is DJI's internal drone/camera/product-ID table &mdash; and whichever check decides an SDK feature is or isn't available for a given ID. Search both output folders:</p>
+
+      <div class="code-block">
+        <div class="label"><span>PowerShell &mdash; ripgrep</span><button class="copy-btn" data-copy="rg -il 'producttype|dronetype|cameratype' C:\Users\18108\drone\jadx_out&#10;rg -il 'mini_4k|mini4k|MINI_4K' C:\Users\18108\drone\jadx_out C:\Users\18108\drone\apktool_out&#10;rg -c 'MAVIC|MINI2|MINI3|AIR2S|M300' C:\Users\18108\drone\jadx_out --type java | sort -t: -k2 -rn | head -20">Copy</button></div>
+        <pre>rg -il 'producttype|dronetype|cameratype' C:\Users\18108\drone\jadx_out
+rg -il 'mini_4k|mini4k|MINI_4K' C:\Users\18108\drone\jadx_out C:\Users\18108\drone\apktool_out
+rg -c 'MAVIC|MINI2|MINI3|AIR2S|M300' C:\Users\18108\drone\jadx_out --type java | sort -t: -k2 -rn | head -20</pre>
+      </div>
+
+      <p>That third line is the useful trick: whichever file mentions the <em>most</em> known DJI product names in one place is almost certainly the registry/enum class itself &mdash; find that file, then check line-by-line whether the Mini 4K has its own entry.</p>
+
+      <div class="fork">
+        <div class="fork-card">
+          <span class="tag">Situation A &mdash; entry exists</span>
+          <p>Mini 4K shows up in the registry, just gated off from SDK flight control. <strong>Patch the gate</strong>, not the ID table &mdash; safer, and flight tuning stays accurate to the real drone.</p>
+        </div>
+        <div class="fork-card">
+          <span class="tag">Situation B &mdash; no entry</span>
+          <p>Mini 4K isn't represented at all. Falls back to <strong>spoofing as a supported drone</strong> (the Mini&nbsp;2&nbsp;&rarr;&nbsp;Mavic&nbsp;Air&nbsp;2 precedent) &mdash; riskier, since flight parameters come from the impersonated model.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="phase">
+    <div class="phase-head">
+      <span class="phase-num">05</span>
+      <h2>Hand it to Claude Code</h2>
+    </div>
+    <div class="phase-body">
+      <p>The recommended path once the APK is on the PC. Open a terminal, run <code class="inline">claude</code>, and paste this in as one message:</p>
+
+      <div class="code-block">
+        <div class="label"><span>Prompt for Claude Code</span><button class="copy-btn" data-copy="I have a DJI Fly APK at C:\Users\18108\drone\dji_fly.apk that I need decompiled and searched. Goal: find DJI's internal drone/camera/product-ID registry (the classes that map a numeric ID to a drone model, historically named things like dji.midware.data.config.P3.ProductType on older SDK builds, though this is likely MSDK v5 with different names) and any gate that decides whether SDK flight-control features are exposed for a given product ID.&#10;&#10;Please:&#10;1. Check for Java, jadx, apktool, and ripgrep (rg) - install whatever's missing (winget is available).&#10;2. Decompile the APK with both jadx and apktool into sibling folders next to the APK.&#10;3. Search the output for classes/enums that look like a drone or camera product-ID table (cross-reference against known DJI model names: Mavic, Mini 2, Mini 3, Mini 3 Pro, Air 2S, Mini 4 Pro, M300, M350, Matrice, Inspire).&#10;4. Determine whether the DJI Mini 4K specifically has its own entry in that table, or is absent entirely.&#10;5. If it has an entry, find whatever code path gates SDK/flight-control feature availability by product ID, and show me exactly where the Mini 4K would need to be let through.&#10;6. If it's absent, identify which currently-supported drone has the closest flight characteristics (weight, prop size, max speed) to the Mini 4K, as the best spoofing target.&#10;7. Write a findings report (file paths, class names, line numbers, and your recommendation) to C:\Users\18108\drone\findings.md so I can send it back to Claude for the next step.">Copy prompt</button></div>
+        <pre>I have a DJI Fly APK at C:\Users\18108\drone\dji_fly.apk that I need
+decompiled and searched. Goal: find DJI's internal drone/camera/product-ID
+registry (the classes that map a numeric ID to a drone model, historically
+named things like dji.midware.data.config.P3.ProductType on older SDK
+builds, though this is likely MSDK v5 with different names) and any gate
+that decides whether SDK flight-control features are exposed for a given
+product ID.
+
+Please:
+1. Check for Java, jadx, apktool, and ripgrep (rg) - install whatever's
+   missing (winget is available).
+2. Decompile the APK with both jadx and apktool into sibling folders next
+   to the APK.
+3. Search the output for classes/enums that look like a drone or camera
+   product-ID table (cross-reference against known DJI model names: Mavic,
+   Mini 2, Mini 3, Mini 3 Pro, Air 2S, Mini 4 Pro, M300, M350, Matrice,
+   Inspire).
+4. Determine whether the DJI Mini 4K specifically has its own entry in
+   that table, or is absent entirely.
+5. If it has an entry, find whatever code path gates SDK/flight-control
+   feature availability by product ID, and show me exactly where the
+   Mini 4K would need to be let through.
+6. If it's absent, identify which currently-supported drone has the
+   closest flight characteristics (weight, prop size, max speed) to the
+   Mini 4K, as the best spoofing target.
+7. Write a findings report (file paths, class names, line numbers, and
+   your recommendation) to C:\Users\18108\drone\findings.md so I can send
+   it back to Claude for the next step.</pre>
+      </div>
+
+      <p>When it's done, paste <code class="inline">findings.md</code> back to me here (or attach it &mdash; it'll be tiny) and we'll pick the exact Frida hook targets from there.</p>
+    </div>
+  </section>
+
+  <footer>
+    JobsiteFollow &middot; unofficial hardware-hacking route &middot; CPU-only binding rule applies to the separate Tiny Gladiators project, not this one
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var text = btn.getAttribute('data-copy') || '';
+      var original = btn.textContent;
+      try {
+        navigator.clipboard.writeText(text).then(function () {
+          btn.textContent = 'Copied';
+          setTimeout(function () { btn.textContent = original; }, 1400);
+        }).catch(function () {
+          btn.textContent = 'Select & copy';
+          setTimeout(function () { btn.textContent = original; }, 1600);
+        });
+      } catch (e) {
+        btn.textContent = 'Select & copy';
+        setTimeout(function () { btn.textContent = original; }, 1600);
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
+
+</body></html>

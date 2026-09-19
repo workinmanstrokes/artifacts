@@ -1,0 +1,333 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>diddlersFreq0ff Launch Guide</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Source+Sans+3:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap');
+
+:root{
+  --bg:#faf9fc;
+  --surface:#ffffff;
+  --text:#17151f;
+  --text-muted:#5b5468;
+  --accent:#6d28d9;
+  --accent-soft:#efe8fd;
+  --border:#e4e1ec;
+  --code-bg:#f2eefa;
+  --good:#0f7a4f;
+  --good-soft:#e5f6ee;
+  --pending:#a3670a;
+  --pending-soft:#fbf0dd;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d0b14; --surface:#15121f; --text:#ece9f4; --text-muted:#a79fbd;
+    --accent:#b892ff; --accent-soft:#241c3a; --border:#282239; --code-bg:#1b1729;
+    --good:#57d99b; --good-soft:#122a20; --pending:#e8b558; --pending-soft:#2c2210;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d0b14; --surface:#15121f; --text:#ece9f4; --text-muted:#a79fbd;
+  --accent:#b892ff; --accent-soft:#241c3a; --border:#282239; --code-bg:#1b1729;
+  --good:#57d99b; --good-soft:#122a20; --pending:#e8b558; --pending-soft:#2c2210;
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Source Sans 3',ui-sans-serif,system-ui,sans-serif;font-size:16.5px;line-height:1.62}
+.wrap{max-width:760px;margin:0 auto;padding:56px 20px 100px}
+.eyebrow{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:.6em}
+.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);display:inline-block}
+h1{font-family:'Newsreader',Georgia,serif;font-weight:600;font-size:clamp(2rem,5vw,2.6rem);line-height:1.1;margin:.5em 0 .25em;text-wrap:balance;letter-spacing:-.01em}
+.lede{font-size:1.06em;color:var(--text-muted);margin:0 0 32px;max-width:60ch}
+
+.status{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:0 0 44px}
+.status .pill{border:1px solid var(--border);background:var(--surface);border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:10px;font-size:14px}
+.status .pill b{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.04em;padding:3px 7px;border-radius:20px;flex-shrink:0}
+.status .pill.done b{background:var(--good-soft);color:var(--good)}
+.status .pill.pending b{background:var(--pending-soft);color:var(--pending)}
+
+nav.toc{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px 24px;margin:0 0 48px}
+nav.toc .cap{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin:0 0 10px}
+nav.toc ol{margin:0;padding-left:1.3em;columns:2;column-gap:24px}
+nav.toc li{margin:0 0 6px;break-inside:avoid}
+nav.toc a{color:var(--text);text-decoration:none;font-size:14.5px}
+nav.toc a:hover{color:var(--accent)}
+
+section{margin:0 0 46px;scroll-margin-top:24px}
+section h2{font-family:'Newsreader',Georgia,serif;font-weight:600;font-size:1.4rem;margin:0 0 .3em;display:flex;align-items:baseline;gap:.5em}
+section h2 .num{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:.6em;color:var(--accent);font-weight:500}
+section .sub{color:var(--text-muted);margin:0 0 18px;font-size:.97em}
+section p{margin:.9em 0}
+
+.field{margin:0 0 20px}
+.field .label{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);margin:0 0 6px;display:flex;justify-content:space-between}
+.field .box{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px;white-space:pre-wrap;font-size:.97em}
+.field .box.mono{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:.85em}
+
+pre{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:16px 18px;overflow-x:auto;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:.85em;line-height:1.55;margin:.9em 0}
+code{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:.88em;background:var(--code-bg);padding:.15em .4em;border-radius:4px}
+pre code{background:none;padding:0}
+
+.checklist{list-style:none;margin:0;padding:0;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--surface)}
+.checklist li{border-top:1px solid var(--border)}
+.checklist li:first-child{border-top:none}
+.checklist label{display:flex;gap:12px;align-items:flex-start;padding:14px 18px;cursor:pointer}
+.checklist input{margin-top:4px;width:16px;height:16px;accent-color:var(--accent);flex-shrink:0}
+.checklist .t{font-weight:600}
+.checklist .d{color:var(--text-muted);font-size:.93em;margin-top:2px}
+.checklist input:checked ~ div .t{text-decoration:line-through;text-decoration-color:var(--text-muted);color:var(--text-muted)}
+
+.callout{background:var(--accent-soft);border-radius:10px;padding:16px 20px;font-size:.95em;margin:1em 0}
+.callout strong{color:var(--accent)}
+.warn{background:var(--pending-soft);border-radius:10px;padding:16px 20px;font-size:.95em;margin:1em 0}
+.warn strong{color:var(--pending)}
+.done-note{background:var(--good-soft);border-radius:10px;padding:16px 20px;font-size:.95em;margin:1em 0}
+.done-note strong{color:var(--good)}
+
+table{width:100%;border-collapse:collapse;margin:1em 0;font-size:.93em}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--border)}
+th{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--text-muted);font-weight:500}
+.tablewrap{overflow-x:auto}
+
+.assetgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:1em 0}
+.assetgrid .a{border:1px solid var(--border);background:var(--surface);border-radius:10px;padding:10px;font-size:.85em}
+.assetgrid .a b{display:block;font-size:.95em;margin-bottom:2px}
+.assetgrid .a span{color:var(--text-muted)}
+
+hr.rule{border:none;border-top:1px solid var(--border);margin:56px 0 32px}
+footer{color:var(--text-muted);font-size:14px}
+footer a{color:var(--text-muted)}
+a{color:var(--accent)}
+@media (max-width:520px){ nav.toc ol{columns:1} }
+</style>
+
+<div class="wrap">
+  <div class="eyebrow"><span class="dot"></span>Launch Guide &middot; diddlersFreq0ff</div>
+  <h1>Getting diddlersFreq0ff onto Google Play</h1>
+  <p class="lede">Everything needed to take the app from a working debug build to a live Play Store listing &mdash; what's already done, the exact commands to build a release, the listing copy, and the account steps only you can complete.</p>
+
+  <div class="status" id="status">
+    <div class="pill done"><b>DONE</b> Signing config wired into the Android project</div>
+    <div class="pill done"><b>DONE</b> Privacy policy written &amp; published</div>
+    <div class="pill done"><b>DONE</b> Keystore generated &amp; signed release .aab built</div>
+    <div class="pill done"><b>DONE</b> App icon, feature graphic &amp; screenshots</div>
+    <div class="pill done"><b>DONE</b> Play Console account &amp; store listing</div>
+    <div class="pill pending"><b>YOU</b> Closed testing: 12 testers &times; 14 days</div>
+  </div>
+
+  <nav class="toc">
+    <p class="cap">On this page</p>
+    <ol>
+      <li><a href="#build">1. Signed release &mdash; done</a></li>
+      <li><a href="#listing">2. Store listing copy</a></li>
+      <li><a href="#rating">3. Content rating &amp; audience</a></li>
+      <li><a href="#datasafety">4. Data safety &amp; ads</a></li>
+      <li><a href="#assets">5. Graphics &mdash; ready to upload</a></li>
+      <li><a href="#testkit">6. Closed testing kit</a></li>
+      <li><a href="#console">7. Play Console, step by step</a></li>
+      <li><a href="#watch">8. Things worth double‑checking</a></li>
+    </ol>
+  </nav>
+
+  <section id="build">
+    <h2><span class="num">01</span>Signed release &mdash; done</h2>
+    <p class="sub">The shell bridge is back up, so this ran end-to-end &mdash; nothing left for you here except the backup below.</p>
+
+    <div class="done-note"><strong>Built successfully.</strong> Upload keystore generated, <code>keystore.properties</code> written, and <code>bundleRelease</code> completed. The file to upload to Play Console is:</div>
+    <div class="field"><div class="box mono">android\app\build\outputs\bundle\release\app-release.aab</div></div>
+
+    <p><strong>One quirk worth knowing</strong> if you ever regenerate the keystore by hand: <code>app/build.gradle</code> resolves <code>storeFile</code> relative to the <em>project root</em> (<code>diddlersFreq0ff-v02\</code>), not the <code>android\</code> folder &mdash; even though <code>keystore.properties</code> lives inside <code>android\</code>. So <code>release.keystore</code> itself belongs one level up, at:</p>
+    <div class="field"><div class="box mono">C:\Users\18108\diddlersFreq0ff-v02\release.keystore</div></div>
+
+    <div class="warn"><strong>Back this up right now.</strong> The keystore password was generated randomly and saved only in <code>android\keystore.properties</code> (gitignored, so it lives on this machine alone). <code>release.keystore</code> plus that password is the only thing that can sign updates to this app going forward &mdash; lose either one and recovering access to your own app listing later is a slow, manual process with Google support. Copy both the <code>.keystore</code> file and the password out of <code>keystore.properties</code> into a password manager or a second drive today.</div>
+  </section>
+
+  <section id="listing">
+    <h2><span class="num">02</span>Store listing copy</h2>
+    <p class="sub">Paste these straight into Play Console's "Main store listing" page. Edit the description's tone if you want, but keep the bolded disclosure lines &mdash; Google looks for exactly this kind of explicit no‑real‑money language on simulated‑gambling listings.</p>
+
+    <div class="field">
+      <div class="label">App name <span>23 / 30 chars</span></div>
+      <div class="box">diddlersFreq0ff Casino</div>
+    </div>
+
+    <div class="field">
+      <div class="label">Short description <span>75 / 80 chars</span></div>
+      <div class="box">Free-play slots, blackjack &amp; roulette. Virtual coins only, no real money.</div>
+    </div>
+
+    <div class="field">
+      <div class="label">Full description</div>
+      <div class="box">Turn up your fortune in diddlersFreq0ff &mdash; a free-play social casino with three original games: Neon Fortune (a 3-reel slot with a fully disclosed prize table), Blackjack (dealer stands on 17), and Roulette Rush.
+
+Spin, hit, and place your bets with a starting stack of virtual coins. Level up to unlock bigger daily rewards, come back for your free Daily Vault every day, and track your stats from your profile.
+
+FEATURES
+&bull; Neon Fortune &mdash; original 3-reel slot, prize table shown in-game
+&bull; Blackjack &mdash; classic rules, dealer stands on 17
+&bull; Roulette Rush &mdash; red, black, or green
+&bull; Daily coin vault, XP, and levels
+&bull; Built-in session reminders for responsible, balanced play
+
+IMPORTANT: diddlersFreq0ff is intended for entertainment purposes only for adult audiences. All coins are virtual and have no cash value. Nothing in this app can be redeemed, exchanged, or cashed out for real money, goods, or prizes, and success at social casino games does not indicate future success at real-money gambling.</div>
+    </div>
+
+    <div class="tablewrap"><table>
+      <tr><th>Field</th><th>Value</th></tr>
+      <tr><td>App category</td><td>Games &rarr; Casino</td></tr>
+      <tr><td>Tags</td><td>casino, slots, card game, simulation</td></tr>
+      <tr><td>Contact email</td><td>didddlerrr@gmail.com</td></tr>
+      <tr><td>Privacy policy URL</td><td><a href="https://claude.ai/code/artifact/7db919a7-dbf6-477e-b151-29164276486d" target="_blank" rel="noopener">claude.ai/code/artifact/7db919a7&hellip;</a></td></tr>
+    </table></div>
+  </section>
+
+  <section id="rating">
+    <h2><span class="num">03</span>Content rating &amp; audience</h2>
+    <p class="sub">Play Console runs the IARC questionnaire itself &mdash; you answer questions, it computes the rating per region. Answer honestly; here's what the honest answers are for this app.</p>
+    <ul>
+      <li>When asked whether the app contains <strong>simulated gambling</strong> (slot machines, roulette, card games played for a fictional prize, using currency that isn't real money) &mdash; answer <strong>yes</strong>. This is exactly what the app does, disclosed on every game screen.</li>
+      <li>When asked whether real money or prizes of real-world value can be won &mdash; answer <strong>no</strong>.</li>
+      <li>Expect this to land the app at Teen or Mature depending on the rating board (ESRB/PEGI/etc. compute independently from the same answers) &mdash; that's normal and expected for this genre; it's the same bracket apps like Slotomania or DoubleDown Casino carry.</li>
+      <li>In the <strong>Target audience and content</strong> section, select an adult age range (18 and over), answer "no" to the app being directed at children, and do not enroll in Designed for Families &mdash; that program explicitly excludes simulated gambling.</li>
+    </ul>
+  </section>
+
+  <section id="datasafety">
+    <h2><span class="num">04</span>Data safety &amp; ads</h2>
+    <table>
+      <tr><th>Question</th><th>Answer for this app</th></tr>
+      <tr><td>Does the app collect or share user data?</td><td><strong>No</strong> &mdash; everything is stored locally on-device (see the privacy policy)</td></tr>
+      <tr><td>Does the app contain ads?</td><td><strong>No</strong> &mdash; no ad SDK is integrated</td></tr>
+      <tr><td>Does the app offer in-app purchases?</td><td><strong>No</strong> for this release &mdash; the store screen is demo-only and purchases are disabled in code</td></tr>
+      <tr><td>Data safety &rarr; Privacy policy URL</td><td>paste the link from section 2 above</td></tr>
+    </table>
+    <div class="callout"><strong>On enabling real purchases later:</strong> if you ever turn on the coin-pack purchases that are currently just demo buttons, that's still fine under Play policy (buying virtual currency with real money is standard, like gems in Candy Crush) &mdash; it only becomes "real-money gambling" if players could cash winnings back out, which this app never does. But turning it on means adding Play Billing, server-side receipt validation, and updating the Data Safety and in-app purchase declarations before you ship it &mdash; worth treating as its own follow-up project rather than bundling into this launch.</div>
+  </section>
+
+  <section id="assets">
+    <h2><span class="num">05</span>Graphics &mdash; ready to upload</h2>
+    <p>All required Play Store art is built and sitting in <code>diddlersFreq0ff-v02\Claude outputs\store-assets\</code>, sized to spec:</p>
+    <div class="assetgrid">
+      <div class="a"><b>icon.png</b><span>512&times;512 &middot; app icon</span></div>
+      <div class="a"><b>feature.png</b><span>1024&times;500 &middot; feature graphic</span></div>
+      <div class="a"><b>screenshots\lobby.png</b><span>520&times;924 (16:9)</span></div>
+      <div class="a"><b>screenshots\slots.png</b><span>Neon Fortune</span></div>
+      <div class="a"><b>screenshots\blackjack.png</b><span>mid-hand</span></div>
+      <div class="a"><b>screenshots\roulette.png</b><span>wheel &amp; picks</span></div>
+    </div>
+    <p>Design: a faceted neon gem mark (cyan&rarr;pink, gold highlight) pulled from the app's own palette and its existing 💎/◈ iconography, on the same dark radial-purple ground as the in-app hero &mdash; and, for the feature graphic, the wordmark plus two compliance-forward chips ("Always free to play" / "No real money") that echo the disclosure language in section 2. The four screenshots are real renders of the running app (lobby, Neon Fortune, a live Blackjack hand, and Roulette Rush), not mockups.</p>
+    <p class="sub">If you'd rather have real device screenshots instead of these renders, or want a different tagline/palette on the feature graphic, say so and I'll redo them &mdash; otherwise these are upload-ready as-is.</p>
+  </section>
+
+  <section id="testkit">
+    <h2><span class="num">06</span>Closed testing kit</h2>
+    <p class="sub">This is the step you're on now &mdash; everything below is aimed at getting the closed test live and tracking its clock.</p>
+
+    <p><strong>a. Create the release.</strong> In Play Console: <strong>Testing &rarr; Closed testing &rarr; Create track</strong> (or your existing closed track) <strong>&rarr; Create new release</strong>. Upload:</p>
+    <div class="field"><div class="box mono">android\app\build\outputs\bundle\release\app-release.aab</div></div>
+    <p>Give it a release name (e.g. <code>1.0 (1) &mdash; closed test</code>) and short release notes, then save and review. Play Console will run its automated pre-launch checks before it lets you roll out &mdash; that can take anywhere from a few minutes to a few hours.</p>
+
+    <p><strong>b. Add testers.</strong> On the track's <strong>Testers</strong> tab, create an email list (up to 100 addresses) or point it at a Google Group &mdash; either counts. You need <strong>12 people who actually opt in</strong>, so it's worth inviting more than 12 in case a few don't follow through. Once saved, Play Console gives you an opt-in URL &mdash; that's what you send people.</p>
+
+    <div class="field">
+      <div class="label">Tester recruitment message <span>copy &amp; send</span></div>
+      <div class="box">Hey — I'm getting a free-play social casino app (diddlersFreq0ff) ready for the Play Store, and Google requires a small closed test before it'll go live. Would you be up for helping?
+
+What I need from you:
+1. Open this link on your Android phone: [PASTE YOUR OPT-IN LINK HERE]
+2. Tap "Become a tester" and accept
+3. Install the app from the Play Store link on that same page
+4. Open it at least once
+
+The only real ask is staying opted in for 14 days straight — you don't need to keep playing, just don't opt back out in the meantime. It's free, no payment info anywhere in the app.
+
+Thanks for the help!</div>
+    </div>
+
+    <div class="warn"><strong>Don't recruit exclusively from one household or one shared network.</strong> Google's automated review sometimes flags closed tests where all testers look like the same person (same device model, same IP range). A handful of different phones/networks is safer than 12 accounts opted in from your own living room.</div>
+
+    <p><strong>c. Track the 14-day window.</strong> The clock starts once your testers have actually opted in, not when you send the link. Set the date below once most of them have accepted, and this page will track it for you (saved on this device only):</p>
+
+    <div class="field">
+      <div class="label">Closed testing start date</div>
+      <input type="date" id="testStart" style="width:100%;border:1px solid var(--border);border-radius:8px;padding:10px 14px;background:var(--surface);color:var(--text);font:inherit;font-size:.97em">
+    </div>
+    <div class="done-note" id="testProgress" style="display:none"></div>
+    <div class="callout" id="testEmpty">No start date set yet &mdash; pick one above once your testers have opted in.</div>
+  </section>
+
+  <section id="console">
+    <h2><span class="num">07</span>Play Console, step by step</h2>
+    <p class="sub">These steps involve your Google account, a payment method, and identity verification, so they need to happen in your hands &mdash; I can't create accounts, agree to Google's Developer Distribution Agreement, or enter payment details on your behalf. Check items off as you go; this list is saved on this device.</p>
+    <ul class="checklist" id="checklist">
+      <li><label><input type="checkbox" data-id="c1"><div><div class="t">Register a Play Console account</div><div class="d">play.google.com/console/signup &middot; one-time $25 fee, paid by you &middot; choose "Personal" unless you're launching under a registered business &middot; Google may ask for ID verification, which can take up to 48 hours</div></div></label></li>
+      <li><label><input type="checkbox" data-id="c2"><div><div class="t">Create the app entry</div><div class="d">App name "diddlersFreq0ff Casino" &middot; type: Game &middot; Free &middot; accept the Developer Program Policies and US export laws declarations</div></div></label></li>
+      <li><label><input type="checkbox" data-id="c3"><div><div class="t">Fill in App content</div><div class="d">Privacy policy URL, content rating questionnaire, target audience, data safety, ads declaration &mdash; using sections 3 &amp; 4 above</div></div></label></li>
+      <li><label><input type="checkbox" data-id="c4"><div><div class="t">Fill in the Main store listing</div><div class="d">Paste the copy from section 2 and upload the icon/feature graphic/screenshots from section 5 (all ready in <code>store-assets\</code>) &middot; set category to Games &gt; Casino</div></div></label></li>
+      <li><label><input type="checkbox" data-id="c5"><div><div class="t">Create a Closed testing release</div><div class="d">Testing &rarr; Closed testing &rarr; new release &rarr; upload <code>app-release.aab</code> from <code>android\app\build\outputs\bundle\release\</code> &rarr; add at least 12 tester emails (a Google Group or plain email list both work) &rarr; share the opt-in link and have them accept it</div></div></label></li>
+      <li><label><input type="checkbox" data-id="c6"><div><div class="t">Hold the test open 14 continuous days</div><div class="d">All 12+ testers need to stay opted in for 14 days in a row &mdash; someone opting out and back in resets their count</div></div></label></li>
+      <li><label><input type="checkbox" data-id="c7"><div><div class="t">Apply for production access</div><div class="d">Play Console prompts a short questionnaire about the test, the app, and your production readiness once the 12/14 threshold is met &mdash; usually reviewed within about a week</div></div></label></li>
+      <li><label><input type="checkbox" data-id="c8"><div><div class="t">Create the Production release and roll out</div><div class="d">Same .aab (or a newer signed one) &rarr; Production &rarr; new release &rarr; submit for review</div></div></label></li>
+    </ul>
+  </section>
+
+  <section id="watch">
+    <h2><span class="num">08</span>Things worth double-checking yourself</h2>
+    <p>I'm not a lawyer, and gambling-adjacent app policy is exactly the kind of area where Google's own in-console guidance (which adapts to your specific answers and country list) should be the tie-breaker over anything written here:</p>
+    <ul>
+      <li><strong>Country availability.</strong> A handful of countries restrict simulated-gambling apps outright; Play Console will flag this during setup based on your target countries &mdash; read what it tells you there rather than guessing, and narrow your distribution list if it warns you about a specific country.</li>
+      <li><strong>Category-specific requirements.</strong> Once you pick Games &gt; Casino, Play Console sometimes surfaces extra declarations specific to that category &mdash; fill those out as they appear.</li>
+      <li><strong>The keystore backup.</strong> Worth repeating: back up <code>release.keystore</code> and its password somewhere durable before you forget this page exists.</li>
+    </ul>
+  </section>
+
+  <hr class="rule">
+  <footer>diddlersFreq0ff &middot; Launch Guide &middot; last updated September 18, 2026</footer>
+</div>
+
+<script>
+(function(){
+  var KEY = 'freq0ff-launch-checklist-v1';
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e) { state = {}; }
+  document.querySelectorAll('#checklist input[type=checkbox]').forEach(function(cb){
+    var id = cb.dataset.id;
+    if (state[id]) cb.checked = true;
+    cb.addEventListener('change', function(){
+      state[id] = cb.checked;
+      try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e) {}
+    });
+  });
+
+  var TKEY = 'freq0ff-test-start';
+  var startInput = document.getElementById('testStart');
+  var progressEl = document.getElementById('testProgress');
+  var emptyEl = document.getElementById('testEmpty');
+  function fmt(d){ return d.toLocaleDateString(undefined, { month: 'long', day: 'numeric', year: 'numeric' }); }
+  function renderProgress(){
+    var val = startInput.value;
+    if (!val) { progressEl.style.display = 'none'; emptyEl.style.display = ''; return; }
+    var start = new Date(val + 'T00:00:00');
+    var today = new Date(); today.setHours(0,0,0,0);
+    var daysElapsed = Math.floor((today - start) / 86400000) + 1;
+    var eligible = new Date(start.getTime() + 14 * 86400000);
+    emptyEl.style.display = 'none';
+    progressEl.style.display = '';
+    if (daysElapsed < 1) {
+      progressEl.innerHTML = '<strong>Start date is in the future.</strong> Countdown begins ' + fmt(start) + '.';
+    } else if (daysElapsed >= 14) {
+      progressEl.innerHTML = '<strong>14-day minimum reached</strong> on ' + fmt(eligible) + ' &mdash; go apply for production access (checklist item below).';
+    } else {
+      progressEl.innerHTML = '<strong>Day ' + daysElapsed + ' of 14</strong> &mdash; ' + (14 - daysElapsed) + ' day' + ((14 - daysElapsed) === 1 ? '' : 's') + ' to go. Eligible on ' + fmt(eligible) + ', as long as 12+ testers stay opted in the whole time.';
+    }
+  }
+  if (startInput) {
+    try { var saved = localStorage.getItem(TKEY); if (saved) startInput.value = saved; } catch(e) {}
+    renderProgress();
+    startInput.addEventListener('change', function(){
+      try { localStorage.setItem(TKEY, startInput.value); } catch(e) {}
+      renderProgress();
+    });
+  }
+})();
+</script>
+
+</body></html>

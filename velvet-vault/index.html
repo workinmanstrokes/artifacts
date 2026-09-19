@@ -1,0 +1,65 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Velvet Vault</title>
+<meta name="theme-color" content="#180626" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="icon" href="icon.svg" type="image/svg+xml" />
+<link rel="icon" href="icon-192.png" type="image/png" sizes="192x192" />
+<link rel="apple-touch-icon" href="icon-192.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Velvet Vault" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="style.css" />
+
+<div id="app">
+
+  <header id="topbar">
+    <div class="topbar-stat" id="stat-level" title="Level">
+      <span class="stat-glyph">★</span><span id="level-num">1</span>
+    </div>
+    <div class="xp-track"><div class="xp-fill" id="xp-fill"></div></div>
+    <div class="topbar-stat coin" id="stat-coins" title="Coins">
+      <span class="stat-glyph">🪙</span><span id="coins-num">0</span>
+    </div>
+    <div class="topbar-stat gem" id="stat-gems" title="Gems">
+      <span class="stat-glyph">💎</span><span id="gems-num">0</span>
+    </div>
+  </header>
+
+  <main id="tab-slots" class="tab active">
+    <div id="slots-content"></div>
+  </main>
+
+  <main id="tab-store" class="tab">
+    <div id="store-content"></div>
+  </main>
+
+  <main id="tab-syndicate" class="tab">
+    <div id="syndicate-content"></div>
+  </main>
+
+  <main id="tab-stats" class="tab">
+    <div id="stats-content"></div>
+  </main>
+
+  <nav id="bottom-nav">
+    <button class="nav-btn active" data-tab="slots"><span class="nav-icon">🎰</span>Slots</button>
+    <button class="nav-btn" data-tab="store"><span class="nav-icon">🛍️</span>Store</button>
+    <button class="nav-btn" data-tab="syndicate"><span class="nav-icon">♠️</span>Syndicate</button>
+    <button class="nav-btn" data-tab="stats"><span class="nav-icon">📜</span>Stats</button>
+  </nav>
+
+</div>
+
+<div id="modal-overlay" class="hidden">
+  <div id="modal-box"></div>
+</div>
+
+<div id="toast" class="hidden"></div>
+
+<script src="data.js"></script>
+<script src="engine.js"></script>
+<script src="render.js"></script>
+<script src="app.js"></script>
+
+</body></html>

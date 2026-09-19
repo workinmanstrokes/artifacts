@@ -1,0 +1,116 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Reel Legends: USA</title>
+<meta name="theme-color" content="#123a52" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="icon" href="icons/icon-192.png" />
+<link rel="apple-touch-icon" href="icons/icon-192.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Reel Legends" />
+<link rel="stylesheet" href="style.css" />
+
+<div id="app">
+
+  <header id="topbar">
+    <div class="topbar-stat" id="stat-level" title="Level">
+      <span class="icon">⭐</span><span id="level-num">1</span>
+    </div>
+    <div class="xp-track"><div class="xp-fill" id="xp-fill"></div></div>
+    <div class="topbar-stat" id="stat-coins" title="Coins">
+      <span class="icon">🪙</span><span id="coins-num">0</span>
+    </div>
+    <div class="topbar-stat" id="stat-gems" title="Gems">
+      <span class="icon">💎</span><span id="gems-num">0</span>
+    </div>
+  </header>
+
+  <main id="tab-fish" class="tab active">
+    <div class="location-banner" id="location-banner">
+      <span id="loc-name">Whispering Pines Lake</span>
+      <span class="loc-region" id="loc-region">Minnesota Northwoods</span>
+    </div>
+
+    <div class="scene-wrap">
+      <canvas id="scene"></canvas>
+      <div id="idle-feed"></div>
+    </div>
+
+    <div class="zone-select" id="zone-select">
+      <button class="zone-btn active" data-zone="1">Near Cast</button>
+      <button class="zone-btn" data-zone="2">Mid Cast</button>
+      <button class="zone-btn" data-zone="3">Far Cast</button>
+    </div>
+
+    <div class="fish-status" id="fish-status">Cast your line to begin.</div>
+
+    <div class="action-row">
+      <button id="btn-cast" class="btn-primary">Cast Line</button>
+      <button id="btn-hook" class="btn-hook hidden">SET HOOK!</button>
+      <button id="btn-reel" class="btn-reel hidden">HOLD TO REEL</button>
+      <button id="btn-continue" class="btn-primary hidden">Nice! Continue</button>
+    </div>
+  </main>
+
+  <main id="tab-shop" class="tab">
+    <h2>Tackle Shop</h2>
+    <section class="shop-section">
+      <h3>Rod</h3>
+      <div id="shop-rods" class="shop-list"></div>
+    </section>
+    <section class="shop-section">
+      <h3>Reel</h3>
+      <div id="shop-reels" class="shop-list"></div>
+    </section>
+    <section class="shop-section">
+      <h3>Line</h3>
+      <div id="shop-lines" class="shop-list"></div>
+    </section>
+    <section class="shop-section">
+      <h3>Lures &amp; Bait</h3>
+      <div id="shop-lures" class="shop-list"></div>
+    </section>
+  </main>
+
+  <main id="tab-spots" class="tab">
+    <h2>Fishing Spots</h2>
+    <div id="spots-list" class="spots-list"></div>
+  </main>
+
+  <main id="tab-almanac" class="tab">
+    <h2>Almanac</h2>
+    <div id="almanac-list"></div>
+    <a href="https://fishing-almanac-app.tiiny.site" target="_blank" rel="noopener" class="almanac-link">
+      📖 Track your real catches in the Fishing Almanac
+    </a>
+  </main>
+
+  <main id="tab-stats" class="tab">
+    <h2>Stats</h2>
+    <div id="stats-list" class="stats-list"></div>
+    <button id="btn-reset" class="btn-danger">Reset Game</button>
+  </main>
+
+  <nav id="bottom-nav">
+    <button class="nav-btn active" data-tab="fish"><span class="nav-icon">🎣</span>Fish</button>
+    <button class="nav-btn" data-tab="shop"><span class="nav-icon">🛒</span>Shop</button>
+    <button class="nav-btn" data-tab="spots"><span class="nav-icon">🗺️</span>Spots</button>
+    <button class="nav-btn" data-tab="almanac"><span class="nav-icon">📔</span>Almanac</button>
+    <button class="nav-btn" data-tab="stats"><span class="nav-icon">📊</span>Stats</button>
+  </nav>
+
+</div>
+
+<div id="modal-overlay" class="hidden">
+  <div id="modal-box">
+    <h2 id="modal-title">Welcome back!</h2>
+    <div id="modal-body"></div>
+    <button id="modal-close" class="btn-primary">Great!</button>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="engine.js"></script>
+<script src="render.js"></script>
+<script src="app.js"></script>
+
+</body></html>
