@@ -13,6 +13,7 @@ https://workinmanstrokes.github.io/artifacts/. The root `index.html` links to ea
 | `prism-grade/` | Prism Grade: photo-based trading card pre-grading concept |
 | `reel-legends-usa/` | Reel Legends: USA fishing game (installable PWA) |
 | `living-pond/` | Living Pond: single-pond casting and reeling game |
+| `loop-pop/` | Loop Pop: conveyor pixel puzzle game (installable PWA) |
 | `mini-4k-bypass-runbook/` | Runbook notes for decompiling the DJI Fly APK (Mini 4K SDK work) |
 | `overlap/` | Overlap: group availability finder |
 
