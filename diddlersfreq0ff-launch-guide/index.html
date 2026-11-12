@@ -1,5 +1,5 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>diddlersFreq0ff Launch Guide</title>
+<title>Spin &amp; Deal Launch Guide</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Source+Sans+3:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap');
 
@@ -100,16 +100,17 @@ a{color:var(--accent)}
 </style>
 
 <div class="wrap">
-  <div class="eyebrow"><span class="dot"></span>Launch Guide &middot; diddlersFreq0ff</div>
-  <h1>Getting diddlersFreq0ff onto Google Play</h1>
+  <div class="eyebrow"><span class="dot"></span>Launch Guide &middot; Spin &amp; Deal</div>
+  <h1>Getting Spin &amp; Deal onto Google Play</h1>
   <p class="lede">Everything needed to take the app from a working debug build to a live Play Store listing &mdash; what's already done, the exact commands to build a release, the listing copy, and the account steps only you can complete.</p>
 
   <div class="status" id="status">
     <div class="pill done"><b>DONE</b> Signing config wired into the Android project</div>
     <div class="pill done"><b>DONE</b> Privacy policy written &amp; published</div>
-    <div class="pill done"><b>DONE</b> Keystore generated &amp; signed release .aab built</div>
+    <div class="pill done"><b>DONE</b> Upload keystore generated</div>
+    <div class="pill pending"><b>REBUILD</b> Signed .aab after the Spin &amp; Deal rename</div>
     <div class="pill done"><b>DONE</b> App icon, feature graphic &amp; screenshots</div>
-    <div class="pill done"><b>DONE</b> Play Console account &amp; store listing</div>
+    <div class="pill pending"><b>YOU</b> Play Console account &amp; store listing (nothing uploaded yet)</div>
     <div class="pill pending"><b>YOU</b> Closed testing: 12 testers &times; 14 days</div>
   </div>
 
@@ -131,7 +132,9 @@ a{color:var(--accent)}
     <h2><span class="num">01</span>Signed release &mdash; done</h2>
     <p class="sub">The shell bridge is back up, so this ran end-to-end &mdash; nothing left for you here except the backup below.</p>
 
-    <div class="done-note"><strong>Built successfully.</strong> Upload keystore generated, <code>keystore.properties</code> written, and <code>bundleRelease</code> completed. The file to upload to Play Console is:</div>
+    <div class="warn"><strong>Rebuild required after the rename.</strong> The app is now <strong>Spin &amp; Deal</strong> with package <code>com.spinanddeal.casino</code>. The .aab built on September 18 still has the old package (<code>com.diddlersfreq0ff.casino</code>) &mdash; don't upload it. Pull the rename, then run <code>bundleRelease</code> again with the <em>same</em> upload keystore (the keystore isn't tied to a package name), or use the GitHub Actions <strong>Android build</strong> workflow (Run workflow) once the four <code>ANDROID_KEYSTORE_*</code> / <code>ANDROID_KEY_*</code> repository secrets are set.</div>
+
+    <div class="done-note"><strong>Built successfully (pre-rename).</strong> Upload keystore generated, <code>keystore.properties</code> written, and <code>bundleRelease</code> completed. The file to upload to Play Console is:</div>
     <div class="field"><div class="box mono">android\app\build\outputs\bundle\release\app-release.aab</div></div>
 
     <p><strong>One quirk worth knowing</strong> if you ever regenerate the keystore by hand: <code>app/build.gradle</code> resolves <code>storeFile</code> relative to the <em>project root</em> (<code>diddlersFreq0ff-v02\</code>), not the <code>android\</code> folder &mdash; even though <code>keystore.properties</code> lives inside <code>android\</code>. So <code>release.keystore</code> itself belongs one level up, at:</p>
@@ -145,8 +148,8 @@ a{color:var(--accent)}
     <p class="sub">Paste these straight into Play Console's "Main store listing" page. Edit the description's tone if you want, but keep the bolded disclosure lines &mdash; Google looks for exactly this kind of explicit no‑real‑money language on simulated‑gambling listings.</p>
 
     <div class="field">
-      <div class="label">App name <span>23 / 30 chars</span></div>
-      <div class="box">diddlersFreq0ff Casino</div>
+      <div class="label">App name <span>24 / 30 chars</span></div>
+      <div class="box">Spin &amp; Deal: Free Casino</div>
     </div>
 
     <div class="field">
@@ -156,7 +159,7 @@ a{color:var(--accent)}
 
     <div class="field">
       <div class="label">Full description</div>
-      <div class="box">Turn up your fortune in diddlersFreq0ff &mdash; a free-play social casino with three original games: Neon Fortune (a 3-reel slot with a fully disclosed prize table), Blackjack (dealer stands on 17), and Roulette Rush.
+      <div class="box">Turn up your fortune in Spin &amp; Deal &mdash; a free-play social casino with three original games: Neon Fortune (a 3-reel slot with a fully disclosed prize table), Blackjack (dealer stands on 17), and Roulette Rush.
 
 Spin, hit, and place your bets with a starting stack of virtual coins. Level up to unlock bigger daily rewards, come back for your free Daily Vault every day, and track your stats from your profile.
 
@@ -167,7 +170,7 @@ FEATURES
 &bull; Daily coin vault, XP, and levels
 &bull; Built-in session reminders for responsible, balanced play
 
-IMPORTANT: diddlersFreq0ff is intended for entertainment purposes only for adult audiences. All coins are virtual and have no cash value. Nothing in this app can be redeemed, exchanged, or cashed out for real money, goods, or prizes, and success at social casino games does not indicate future success at real-money gambling.</div>
+IMPORTANT: Spin &amp; Deal is intended for entertainment purposes only for adult audiences. All coins are virtual and have no cash value. Nothing in this app can be redeemed, exchanged, or cashed out for real money, goods, or prizes, and success at social casino games does not indicate future success at real-money gambling.</div>
     </div>
 
     <div class="tablewrap"><table>
@@ -175,7 +178,7 @@ IMPORTANT: diddlersFreq0ff is intended for entertainment purposes only for adult
       <tr><td>App category</td><td>Games &rarr; Casino</td></tr>
       <tr><td>Tags</td><td>casino, slots, card game, simulation</td></tr>
       <tr><td>Contact email</td><td>didddlerrr@gmail.com</td></tr>
-      <tr><td>Privacy policy URL</td><td><a href="https://claude.ai/code/artifact/7db919a7-dbf6-477e-b151-29164276486d" target="_blank" rel="noopener">claude.ai/code/artifact/7db919a7&hellip;</a></td></tr>
+      <tr><td>Privacy policy URL</td><td><a href="https://workinmanstrokes.github.io/artifacts/spin-and-deal-privacy/" target="_blank" rel="noopener">https://workinmanstrokes.github.io/artifacts/spin-and-deal-privacy/</a></td></tr>
     </table></div>
   </section>
 
@@ -206,14 +209,15 @@ IMPORTANT: diddlersFreq0ff is intended for entertainment purposes only for adult
     <h2><span class="num">05</span>Graphics &mdash; ready to upload</h2>
     <p>All required Play Store art is built and sitting in <code>diddlersFreq0ff-v02\Claude outputs\store-assets\</code>, sized to spec:</p>
     <div class="assetgrid">
-      <div class="a"><b>icon.png</b><span>512&times;512 &middot; app icon</span></div>
-      <div class="a"><b>feature.png</b><span>1024&times;500 &middot; feature graphic</span></div>
-      <div class="a"><b>screenshots\lobby.png</b><span>520&times;924 (16:9)</span></div>
-      <div class="a"><b>screenshots\slots.png</b><span>Neon Fortune</span></div>
-      <div class="a"><b>screenshots\blackjack.png</b><span>mid-hand</span></div>
-      <div class="a"><b>screenshots\roulette.png</b><span>wheel &amp; picks</span></div>
+      <div class="a"><b>icon.png</b><span>512&times;512 &middot; 32-bit PNG &middot; app icon</span></div>
+      <div class="a"><b>feature.png</b><span>1024&times;500 &middot; feature graphic (Spin &amp; Deal)</span></div>
+      <div class="a"><b>phone-1080x1920\01-lobby.png</b><span>1080&times;1920 &middot; lobby</span></div>
+      <div class="a"><b>phone-1080x1920\02-slots.png</b><span>Neon Fortune</span></div>
+      <div class="a"><b>phone-1080x1920\03-blackjack-hand.png</b><span>mid-hand</span></div>
+      <div class="a"><b>phone-1080x1920\04-roulette.png</b><span>wheel &amp; picks</span></div>
+      <div class="a"><b>phone-1080x1920\05&ndash;08</b><span>slot win, roulette win, rewards, profile</span></div>
     </div>
-    <p>Design: a faceted neon gem mark (cyan&rarr;pink, gold highlight) pulled from the app's own palette and its existing 💎/◈ iconography, on the same dark radial-purple ground as the in-app hero &mdash; and, for the feature graphic, the wordmark plus two compliance-forward chips ("Always free to play" / "No real money") that echo the disclosure language in section 2. The four screenshots are real renders of the running app (lobby, Neon Fortune, a live Blackjack hand, and Roulette Rush), not mockups.</p>
+    <p>Design: a faceted neon gem mark (cyan&rarr;pink, gold highlight) pulled from the app's own palette and its existing 💎/◈ iconography, on the same dark radial-purple ground as the in-app hero &mdash; and, for the feature graphic, the wordmark plus two compliance-forward chips ("Always free to play" / "No real money") that echo the disclosure language in section 2. The eight 1080&times;1920 screenshots are real renders of the running app (lobby, Neon Fortune, a live Blackjack hand, Roulette Rush, a slot win, a roulette win, Rewards and Profile), not mockups. Use the <code>phone-1080x1920</code> set; the older 520&times;924 <code>screenshots\</code> set shows the old name.</p>
     <p class="sub">If you'd rather have real device screenshots instead of these renders, or want a different tagline/palette on the feature graphic, say so and I'll redo them &mdash; otherwise these are upload-ready as-is.</p>
   </section>
 
@@ -229,7 +233,7 @@ IMPORTANT: diddlersFreq0ff is intended for entertainment purposes only for adult
 
     <div class="field">
       <div class="label">Tester recruitment message <span>copy &amp; send</span></div>
-      <div class="box">Hey — I'm getting a free-play social casino app (diddlersFreq0ff) ready for the Play Store, and Google requires a small closed test before it'll go live. Would you be up for helping?
+      <div class="box">Hey — I'm getting a free-play social casino app (Spin &amp; Deal) ready for the Play Store, and Google requires a small closed test before it'll go live. Would you be up for helping?
 
 What I need from you:
 1. Open this link on your Android phone: [PASTE YOUR OPT-IN LINK HERE]
@@ -259,7 +263,7 @@ Thanks for the help!</div>
     <p class="sub">These steps involve your Google account, a payment method, and identity verification, so they need to happen in your hands &mdash; I can't create accounts, agree to Google's Developer Distribution Agreement, or enter payment details on your behalf. Check items off as you go; this list is saved on this device.</p>
     <ul class="checklist" id="checklist">
       <li><label><input type="checkbox" data-id="c1"><div><div class="t">Register a Play Console account</div><div class="d">play.google.com/console/signup &middot; one-time $25 fee, paid by you &middot; choose "Personal" unless you're launching under a registered business &middot; Google may ask for ID verification, which can take up to 48 hours</div></div></label></li>
-      <li><label><input type="checkbox" data-id="c2"><div><div class="t">Create the app entry</div><div class="d">App name "diddlersFreq0ff Casino" &middot; type: Game &middot; Free &middot; accept the Developer Program Policies and US export laws declarations</div></div></label></li>
+      <li><label><input type="checkbox" data-id="c2"><div><div class="t">Create the app entry</div><div class="d">App name "Spin &amp; Deal: Free Casino" &middot; type: Game &middot; Free &middot; accept the Developer Program Policies and US export laws declarations</div></div></label></li>
       <li><label><input type="checkbox" data-id="c3"><div><div class="t">Fill in App content</div><div class="d">Privacy policy URL, content rating questionnaire, target audience, data safety, ads declaration &mdash; using sections 3 &amp; 4 above</div></div></label></li>
       <li><label><input type="checkbox" data-id="c4"><div><div class="t">Fill in the Main store listing</div><div class="d">Paste the copy from section 2 and upload the icon/feature graphic/screenshots from section 5 (all ready in <code>store-assets\</code>) &middot; set category to Games &gt; Casino</div></div></label></li>
       <li><label><input type="checkbox" data-id="c5"><div><div class="t">Create a Closed testing release</div><div class="d">Testing &rarr; Closed testing &rarr; new release &rarr; upload <code>app-release.aab</code> from <code>android\app\build\outputs\bundle\release\</code> &rarr; add at least 12 tester emails (a Google Group or plain email list both work) &rarr; share the opt-in link and have them accept it</div></div></label></li>
@@ -280,7 +284,7 @@ Thanks for the help!</div>
   </section>
 
   <hr class="rule">
-  <footer>diddlersFreq0ff &middot; Launch Guide &middot; last updated September 18, 2026</footer>
+  <footer>Spin &amp; Deal &middot; Launch Guide &middot; last updated October 1, 2026</footer>
 </div>
 
 <script>
